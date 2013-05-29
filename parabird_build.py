@@ -241,8 +241,12 @@ try:
 
     #fixed seven_zip
     #extract_dmg("Thunderbird [Mac OS]", os.path.join(tempdir, parser.get('thunderbird_mac', 'file')), parser.get('thunderbird_mac', 'path'))
-    tb = SevenZip(parser.get('thunderbird_mac', 'file'))
-    tb.extract_smart(parser.get('thunderbird_mac', 'file'))
+    # os.path.join(tempdir, 
+    # os.path.join(mountpoint,  
+    mainLogger.debug("file: {}\npath:{}".format(parser.get('thunderbird_mac', 'file'), parser.get('thunderbird_mac', 'path')))
+
+    tb = SevenZip(os.path.join(tempdir, parser.get('thunderbird_mac', 'file')))
+    tb.extract_smart(os.path.join(mountpoint, parser.get('thunderbird_mac', 'path')))
 
     parser.set('torbirdy', 'path', os.path.join(parser.get('thunderbird_mac', 'path'), 'Thunderbird.app/Contents/MacOS/distribution/extensions/torbirdy'))
     extract_zipfile("Torbirdy", tempdir+"/"+parser.get('torbirdy', 'file'), parser.get('torbirdy', 'path'))
@@ -254,8 +258,8 @@ try:
 
     #extract_dmg("GPG Tools [Mac OS]", os.path.join(tempdir, parser.get('gpg4mac', 'file')), parser.get('gpg4mac', 'path'))
     #fixed seven_zip
-    gpg_mac = SevenZip(parser.get('gpg4mac', 'file'))
-    gpg_mac.extract_super_smart(parser.get('gpg4mac', 'path'))
+    gpg_mac = SevenZip(os.path.join(tempdir, parser.get('gpg4mac', 'file')))
+    files = gpg_mac.extract_super_smart(os.path.join(mountpoint, parser.get('gpg4mac', 'path')))
 
 
     extract_zipfile("Vidalia [Mac OS]", tempdir+"/"+parser.get('vidalia_mac', 'file'), parser.get('vidalia_mac', 'path'))
@@ -264,8 +268,8 @@ try:
 
     #fixed seven_zip
     #extract_7z("Thunderbird [Windows]", tempdir+"/"+parser.get('thunderbird_windows', 'file'), parser.get('thunderbird_windows', 'path'))
-    tb_win = SevenZip(parser.get('thunderbird_windows', 'file'))
-    tb_win.extract_all(parser.get('thunderbird_windows', 'path'))
+    tb_win = SevenZip(os.path.join(tempdir, parser.get('thunderbird_windows', 'file')))
+    tb_win.extract_all(os.path.join(mountpoint, parser.get('thunderbird_windows', 'path')))
 
     parser.set('torbirdy', 'path', os.path.join(parser.get('thunderbird_windows', 'path'), 'core/distribution/extensions/torbirdy'))
     extract_zipfile("Torbirdy", tempdir+"/"+parser.get('torbirdy', 'file'), parser.get('torbirdy', 'path'))
@@ -281,8 +285,8 @@ try:
 
     #fixed seven_zip
     #extract_7z("Vidalia [Windows]", tempdir+"/"+parser.get('vidalia_windows', 'file'), parser.get('vidalia_windows', 'path'))
-    vidalia = (parser.get('vidalia_windows', 'file'))
-    vidalia.extract(parser.get('vidalia_windows', 'path'))
+    vidalia = SevenZip(os.path.join(tempdir, parser.get('vidalia_windows', 'file')))
+    vidalia.extract(os.path.join(mountpoint, parser.get('vidalia_windows', 'path')))
 
     #
     # Copy Starter
