@@ -258,6 +258,7 @@ try:
 
     #extract_dmg("GPG Tools [Mac OS]", os.path.join(tempdir, parser.get('gpg4mac', 'file')), parser.get('gpg4mac', 'path'))
     #fixed seven_zip
+    print os.path.join(tempdir, parser.get('gpg4mac', 'file'))
     gpg_mac = SevenZip(os.path.join(tempdir, parser.get('gpg4mac', 'file')))
     files = gpg_mac.extract_super_smart(os.path.join(mountpoint, parser.get('gpg4mac', 'path')))
 
@@ -286,7 +287,7 @@ try:
     #fixed seven_zip
     #extract_7z("Vidalia [Windows]", tempdir+"/"+parser.get('vidalia_windows', 'file'), parser.get('vidalia_windows', 'path'))
     vidalia = SevenZip(os.path.join(tempdir, parser.get('vidalia_windows', 'file')))
-    vidalia.extract(os.path.join(mountpoint, parser.get('vidalia_windows', 'path')))
+    vidalia.extract_all(os.path.join(mountpoint, parser.get('vidalia_windows', 'path')))
 
     #
     # Copy Starter
